@@ -100,7 +100,7 @@ export default function FormValidate() {
 
                         const regex = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
                         if (regex.test(user.tensv) !== true) {
-                            let newMessage = 'Tên không được chứa số!!'
+                            let newMessage = 'Tên không được chứa số hoặc kí tự đặc biệt!!'
                             const action = validateName(newMessage)
                             dispatch(action)
                             return
@@ -133,19 +133,11 @@ export default function FormValidate() {
                             }
                         }
 
-                        
-                        for (let key in arrUser) {
-                            if (arrUser[key].masv === user.masv) {
-                                let newMessage = 'Sinh viên này đã có trong danh sách!!'
-                                const action = validateID(newMessage)
-                                dispatch(action)
-                                return
-                            }
-                        }
+                    
 
                         const regex = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
                         if (regex.test(user.tensv) !== true) {
-                            let newMessage = 'Tên không được chứa số!!'
+                            let newMessage = 'Tên không được chứa số hoặc kí tự đặc biệt!!'
                             const action = validateName(newMessage)
                             dispatch(action)
                             return
