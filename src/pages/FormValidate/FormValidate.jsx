@@ -114,8 +114,6 @@ export default function FormValidate() {
                             return
                         }
 
-                        // if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test($('#email').val())) { /* return true */ }
-
                         let mailformat = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
                         if (mailformat.test(user.email) === false) {
                             let newMessage = 'Email không hợp lệ!!';
@@ -123,9 +121,6 @@ export default function FormValidate() {
                             dispatch(action)
                             return
                         }
-                       
-
-
 
                         const action = addNewUser(user)
                         dispatch(action);
@@ -136,6 +131,40 @@ export default function FormValidate() {
                                 alert("Vui lòng nhập đầy đủ thông tin theo đúng yêu cầu!!")
                                 return
                             }
+                        }
+
+                        
+                        for (let key in arrUser) {
+                            if (arrUser[key].masv === user.masv) {
+                                let newMessage = 'Sinh viên này đã có trong danh sách!!'
+                                const action = validateID(newMessage)
+                                dispatch(action)
+                                return
+                            }
+                        }
+
+                        const regex = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
+                        if (regex.test(user.tensv) !== true) {
+                            let newMessage = 'Tên không được chứa số!!'
+                            const action = validateName(newMessage)
+                            dispatch(action)
+                            return
+                        }
+
+                        let vietnamNumberPhone = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+                        if (vietnamNumberPhone.test(user.phone) === false) {
+                            let newMessage = 'Số điện thoại không hợp lệ!!';
+                            const action = validatePhone(newMessage)
+                            dispatch(action)
+                            return
+                        }
+
+                        let mailformat = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+                        if (mailformat.test(user.email) === false) {
+                            let newMessage = 'Email không hợp lệ!!';
+                            const action = validateEmail(newMessage)
+                            dispatch(action)
+                            return
                         }
 
                         console.log(user)
