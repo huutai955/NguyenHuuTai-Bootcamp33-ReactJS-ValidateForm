@@ -13,7 +13,10 @@ const initialState = {
     tensv: '',
     phone: '',
     email: ''
-  }
+  },
+  searchingArrayUser: [
+
+  ]
 }
 
 const formValidateReducer = createSlice({
@@ -82,9 +85,10 @@ const formValidateReducer = createSlice({
         if (removeAccents(state.arrUser[i].tensv).search(action.payload) !== -1) {
           newArrUser.push(state.arrUser[i]);
         }
-        console.log(typeof state.arrUser[i].tensv);
+        console.log(removeAccents(state.arrUser[i].tensv));
       }
-      state.arrUser = [...newArrUser]
+      console.log(newArrUser)
+      state.searchingArrayUser = [...newArrUser]
     },
     validateEmpty: (state, action) => {
       state.errUser = action.payload
@@ -100,10 +104,15 @@ const formValidateReducer = createSlice({
     },
     validateEmail: (state, action) => {
       state.errUser.email = action.payload
+    },
+    // Reducer này em dùng để bắt trường hợp khi ta thêm 1 user mới vào mảng thì 
+    // searchingArrayUser sẽ bị clear để mảng arrUser hiển thị ra UI cho người dùng 
+    changeArrUser: (state, action) => {
+      state.searchingArrayUser = action.payload
     }
   }
 });
 
-export const { validateEmail, validatePhone, validateName, addNewUser, deleteUser, addUserFromLocalStorage, editUser, updateUser, findUser, validateEmpty, validateID } = formValidateReducer.actions
+export const { changeArrUser, validateEmail, validatePhone, validateName, addNewUser, deleteUser, addUserFromLocalStorage, editUser, updateUser, findUser, validateEmpty, validateID } = formValidateReducer.actions
 
 export default formValidateReducer.reducer

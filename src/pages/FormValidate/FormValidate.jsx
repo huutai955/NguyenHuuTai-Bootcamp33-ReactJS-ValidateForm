@@ -31,7 +31,6 @@ export default function FormValidate() {
     }
 
 
-
     useEffect(() => {
         if (localStorage.getItem('arrUser')) {
             const arr = JSON.parse(localStorage.getItem('arrUser'));
