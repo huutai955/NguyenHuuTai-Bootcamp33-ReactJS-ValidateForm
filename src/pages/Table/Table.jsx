@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeArrUser, deleteUser, editUser, findUser } from '../../redux/reducers/formValidateReducer';
@@ -47,6 +48,7 @@ export default function Table() {
     useEffect(() => {
         const action  = changeArrUser([]);
         dispatch(action)
+        // eslint-disable-next-line
     }, [arrUser])
     return (
         <>
