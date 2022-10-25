@@ -24,10 +24,8 @@ const formValidateReducer = createSlice({
   initialState,
   reducers: {
     addNewUser: (state, action) => {
-
       state.user = action.payload
       state.arrUser.push(state.user)
-
     },
     deleteUser: (state, action) => {
       const maSV = action.payload;
@@ -109,10 +107,13 @@ const formValidateReducer = createSlice({
     // searchingArrayUser sẽ bị clear để mảng arrUser hiển thị ra UI cho người dùng 
     changeArrUser: (state, action) => {
       state.searchingArrayUser = action.payload
+    },
+    setUser: (state, action) => {
+      state.user = action.payload
     }
   }
 });
 
-export const { changeArrUser, validateEmail, validatePhone, validateName, addNewUser, deleteUser, addUserFromLocalStorage, editUser, updateUser, findUser, validateEmpty, validateID } = formValidateReducer.actions
+export const { setUser, changeArrUser, validateEmail, validatePhone, validateName, addNewUser, deleteUser, addUserFromLocalStorage, editUser, updateUser, findUser, validateEmpty, validateID } = formValidateReducer.actions
 
 export default formValidateReducer.reducer

@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { addNewUser, addUserFromLocalStorage, editUser, updateUser, validateEmail, validateEmpty, validateID, validateName, validatePhone } from '../../redux/reducers/formValidateReducer';
+import { addNewUser, addUserFromLocalStorage, editUser, setUser, updateUser, validateEmail, validateEmpty, validateID, validateName, validatePhone } from '../../redux/reducers/formValidateReducer';
 import Table from '../Table/Table';
 
 
 export default function FormValidate() {
     const { arrUser, user, errUser } = useSelector(state => state.formValidateReducer);
     const dispatch = useDispatch();
+    const [userClone, setUserClone] = useState({
+        masv: '',
+        tensv: '',
+        phone: '',
+        email: ''
+    });
 
     const handleChange = (e) => {
         let { id, value, name } = e.target;
@@ -43,7 +49,13 @@ export default function FormValidate() {
         localStorage.setItem("arrUser", JSON.stringify(arrUser));
     }, [arrUser])
 
-    // console.log(user.phone)
+    
+    useEffect(() => {
+        const action = setUser(userClone);
+        dispatch(action)
+    }, [arrUser])
+
+
     return (
         <div className='container'>
             <form action="" className='form' onSubmit={handleSubmit}>
