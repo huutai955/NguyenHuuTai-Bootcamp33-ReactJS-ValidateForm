@@ -78,15 +78,19 @@ const formValidateReducer = createSlice({
         return str;
       }
 
-      const newArrUser = []
-      for (var i = 0; i < state.arrUser.length; i++) {
-        if (removeAccents(state.arrUser[i].tensv).search(action.payload) !== -1) {
-          newArrUser.push(state.arrUser[i]);
-        }
-        console.log(removeAccents(state.arrUser[i].tensv));
-      }
-      console.log(newArrUser)
-      state.searchingArrayUser = [...newArrUser]
+      // const newArrUser = []
+      // for (var i = 0; i < state.arrUser.length; i++) {
+      //   if (removeAccents(state.arrUser[i].tensv).search(action.payload) !== -1) {
+      //     newArrUser.push(state.arrUser[i]);
+      //   }
+      //   console.log(removeAccents(state.arrUser[i].tensv));
+      // }
+
+      state.searchingArrayUser = state.arrUser.filter((user) => {
+        return removeAccents(user.tensv).search(action.payload) !== -1
+      })
+      // console.log(newArrUser)
+      // state.searchingArrayUser = [...newArrUser]
     },
     validateEmpty: (state, action) => {
       state.errUser = action.payload
